@@ -1,0 +1,35 @@
+﻿@model JustBlog.Core.Objects.Post
+
+
+<div class="blog-item">
+@*    <img class="img-responsive img-blog" src="images/blog/blog1.jpg" width="100%" alt="" />*@
+    <div class="blog-content">
+        <h2>@Html.PostLink(Model)</h2>
+        <div class="entry-meta">
+            <span><i class="icon-user"></i>Auther Name</span>
+            <span><i class="icon-folder-close"></i>@Html.CategoryLink(Model.Category)</span>
+            <span><i class="icon-tag"></i>@Helpers.Tags(Html, Model.Tags)</span>
+            <span class ="pull-right"><i class="icon-calendar"></i>@Model.PostedOn.ToConfigLocalTime()</span>
+            
+        </div>
+
+        
+        <!--Short Description-->
+        <p>@Html.Raw(Model.ShortDescription)</p>
+        <div style="padding-bottom:40px">
+        <button class="btn btn-default pull-right"> 
+        @Html.ActionLink("continue...", "post", "blog", 
+        new 
+        { 
+            year = Model.PostedOn.Year, 
+            month = Model.PostedOn.Month, 
+            day = Model.PostedOn.Day, 
+            title = Model.UrlSlug 
+        }, 
+        new { title = "continue..." }
+        )
+        <i class="icon-angle-right"></i></button>
+         </div>
+    </div>
+</div>
+

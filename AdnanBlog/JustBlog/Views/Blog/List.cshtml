@@ -1,0 +1,32 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using JustBlog.Core;
+
+@model JustBlog.Models.ListViewModel
+
+@*@model PagedList.IPagedList<JustBlog.Core.Objects.Post>*@
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  
+}
+
+<div>
+<h1>@ViewBag.Title</h1>
+ 
+  
+  @if (Model.TotalPosts > 0)
+  {
+    foreach (var post in Model.Posts)
+    {
+      @Html.Partial("_PostTemplate", post)
+    }
+  }
+  else
+  {
+    <p>No posts found!</p>
+  }
+  @Html.Partial("_Pager", Model)
+@*  @Html.PagedListPager(Model , page => Url.Action("Posts", new { page=page }), PagedListRenderOptions.TwitterBootstrapPager )*@
+  </div>
